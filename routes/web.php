@@ -15,25 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+# clublectordev.us-east-1.elasticbeanstalk.com
+#Client ID: 3
+#Client secret: YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt
+
 Route::get('/redirect', function () {
 
     $query = http_build_query([
-        'client_id' => '4',
+        'client_id' => '3',
         'redirect_uri' => 'http://localhost:8080/callback',
         'response_type' => 'code',
         'scope' => ''
     ]);
 
-    return redirect('http://localhost:8000/oauth/authorize?'.$query);
+    return redirect('http://clublectordev.us-east-1.elasticbeanstalk.com/oauth/authorize?'.$query);
 });
+
 
 Route::get('/callback', function (Illuminate\Http\Request $request) {
     $http = new \GuzzleHttp\Client;
 
-    $response = $http->post('http://localhost:8000/oauth/token', [
+    $response = $http->post('http://clublectordev.us-east-1.elasticbeanstalk.com/oauth/token', [
         'form_params' => [
-            'client_id' => '4',
-            'client_secret' => 'AW7uJfhH6UOU3OFxvlzw5XlsMfMurSexStgB5CYs',
+            'client_id' => '3',
+            'client_secret' => 'YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt',
             'grant_type' => 'authorization_code',
             'redirect_uri' => 'http://localhost:8080/callback',
             'code' => $request->code,
@@ -44,11 +49,11 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
 
 
 Route::get('/get/client', function (Illuminate\Http\Request $request) {
-    $accessToken= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImEyZjQ1ZTJjYjY0YWM3YWU3ZmRjMzVhOTY0OTgwMmE5ZWMzMDMzODAxZjQ1NGNkYzkzYjY1NWM2ZGQzNjhhODY5ZjE2ZTAzY2FhMjc3ZGY2In0.eyJhdWQiOiI0IiwianRpIjoiYTJmNDVlMmNiNjRhYzdhZTdmZGMzNWE5NjQ5ODAyYTllYzMwMzM4MDFmNDU0Y2RjOTNiNjU1YzZkZDM2OGE4NjlmMTZlMDNjYWEyNzdkZjYiLCJpYXQiOjE0NzUwODQzMzAsIm5iZiI6MTQ3NTA4NDMzMCwiZXhwIjo0NjMwNzU3OTMwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SCG9NiyHCq7D9Li41nFBxp31xDp9A0Q8YD1DyuYMKyO2QAIrm7COEfnOipUAnLXGv8baWvqOOHzn7oKrrbToSbuGN2R2SSbLbUlrVg5m9Hs1GXuvXSsnTpHoe4XmcfQKGvdcjFG9TAP9qedmCMZIvknmtZ8p67958Nn2r7NJJhdABdczkwTy-tZbAmyNLs-xtQmcRcuV7DJ86GSrllFQZHp_pFrX8ZDoljs9h8nXniZEBl9rzOZ1YnDpijYeAXw4PuiWkbwmHKLskOOYj28N7VFwiwPZeL7UnfQVPUsjYt3-uIo_pKYJHI2jeCWYgN9uDK10mmDP3YL5RVFwN7C26vCeDCR5D7zS0rqwhMULw7t9-DGV4Blx5AE--yBDReWvo_TGfQXqsZ7GY_KqQ2WkQCo5WFrkmPAurA7BSx05AQWPNP7Z89HKN6AAZ0VAH2o_b4oPRI1WE818YjWZSAdcxLkvwbwIgLlX--KzZji7HzjBf-vowXzVxO5v3yyMLbEXK3YFXoR65GyqiYjnnTBTTBROukDhz5KYidJVy_rjfd_bDbGntCXPEDVR_J_CigQPYx8QMVeRlSuMyNrMxGOX1MnWrBIPCxp_F04SQJgpOZmeVvW8fAAF4XIVaCu4JI6NH337eFj1FgnbGoM2eIvPcclmqAIBh4HGaptk2gxOE7w"';
+    $accessToken= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFmNzgzNjY1NTVjZjdmNWFkMzIxOGExNTI5ZGI4ZjRjMDAwMWRhNDZjODA4NGQzZTFlNmYxOGFiMjc0MDc5MDcyZGMxNzVmZTgyYTEzMGM4In0.eyJhdWQiOiIzIiwianRpIjoiYWY3ODM2NjU1NWNmN2Y1YWQzMjE4YTE1MjlkYjhmNGMwMDAxZGE0NmM4MDg0ZDNlMWU2ZjE4YWIyNzQwNzkwNzJkYzE3NWZlODJhMTMwYzgiLCJpYXQiOjE0NzUxMDIyOTIsIm5iZiI6MTQ3NTEwMjI5MiwiZXhwIjo0NjMwNzc1ODkyLCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.YK5ZHtCKW-Sc-ZBawaUgI9lPpAdEZg9W8IVWwiHC66el4j6zWHwY-q9smCVgsnQG2oNUlqYM04neO7j7Gvm8GAn7Nrwv872j89r89yqYR3iUPJUXVdl-GMyXXcdp0dAaW51N30enREbCAz8VZqCJKwv1J1_VBFRpD2RSslB8IQogsccS-YHRUNXERPmtbXgM9ouEJsxLJgTnRDUzAMhGqMMZ6-esg736_V8eIwa_t8bpLGG2L9gUaRAi3K4H9yMHMFgHrWeYgd039paKyNU9_F5hHCP7A97FSf_mdow9u1uJtQpT1Z4X8tyCMadn1PJynR_M-HgVA2ZdrkPjbFDhogVjH2EYeOK8JUcHihVPLraNmVchetbcL7ge7CYSGNwUt1yVEc_6gJ6a8S_JTkR7LjvX0_Uc2R3FN2mnUOsuQpIGmu3RT_0yOhciUjbsmccPiTdcx7SSOMPisGkg9B2g7feGGoJLxZDw2-KaDdzARF1lJwTH5pdoaqu24RJcsLIBbofqEPW9GDwaUTUsLlWRnoPbfmAKjBsP7b_bWacxPUUo3k7QITenXLkVvp6PiQ0uFE8bvCj2JUrsOP3DXRkggc3XhGyLLT9A-vv9uBE4IT5GyjDjpDu473g5kVo1SQaUBS9AmXn_PODMK23qXYIbF79Em_lSgHkrVOQZ-dsNX8U"';
 
     $http = new \GuzzleHttp\Client;
 
-    $response = $http->get('http://localhost:8000/api/user/2', [
+    $response = $http->get('http://clublectordev.us-east-1.elasticbeanstalk.com/api/user/2', [
         'headers' => [
             'Accept' => 'application/json',
             'Authorization' => 'Bearer '.$accessToken,
