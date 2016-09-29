@@ -50,7 +50,42 @@ class SocialAuthController extends Controller
 		return redirect($this->serverOauth.'oauth/authorize?'.$query);
     }
 
-    public function callback(Request $request)
+    public function callback(Request $request){
+
+    	$this->init($request);
+
+    	$http = new \GuzzleHttp\Client;
+
+	    $response = $http->post($this->serverOauth.'oauth/token', [
+	        'form_params' => [
+	            'client_id' => $this->clientId,
+	            'client_secret' => $this->clientSecret,
+	            'grant_type' => 'authorization_code',
+	            'redirect_uri' => $this->redirectUri,
+	            'code' => $request->code,
+	        ],
+	    ]);
+
+	    $responseAuthorization = json_decode((string) $response->getBody(), true);
+
+	    $accessToken = $responseAuthorization['access_token'];
+
+    	$responseDataUser = $http->get($this->serverOauth.'api/user', [
+	        'headers' => [
+	            'Accept' => 'application/json',
+	            'Authorization' => 'Bearer '.$accessToken,
+	        ],
+	    ]);
+
+	    $dataUser = json_decode((string)$responseDataUser->getBody(),true);
+
+	    $request->session()->put('user', $dataUser);
+
+	    return redirect('/');
+
+    }
+
+    public function callbackShow(Request $request)
     {
     	$this->init($request);
     	$http = new \GuzzleHttp\Client;
@@ -85,5 +120,10 @@ class SocialAuthController extends Controller
 	    ]);
 	    //dd((string)$response->getBody()->getContents());
 	    return json_decode((string) $response->getBody(), true);
+    }
+
+    public function logout(Request $request){
+    	$request->session()->forget('user');
+    	return redirect('/');
     }
 }

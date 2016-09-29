@@ -18,4 +18,7 @@ Route::get('/', function () {
 Route::get('redirect', 'SocialAuthController@redirect')->name('loger.redirect');
 Route::get('callback', 'SocialAuthController@callback');
 Route::get('get/client', 'SocialAuthController@getClient');
+Route::get('logout-lector', 'SocialAuthController@logout');
+
+
 

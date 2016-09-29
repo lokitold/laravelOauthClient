@@ -73,6 +73,20 @@
                 </div>
             @endif
 
+            <div class="top-right links">
+            @if (empty(session()->get('user')))
+                <a href="{{ url('/redirect') }}">Registrate con Club Lector</a>
+            @else
+                <?php $user = session()->get('user'); ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ $user['name'] }} - {{ $user['email'] }} <span class="caret"></span>
+                    </a>
+                    <a href="{{ url('/logout-lector') }}">
+                        Logout
+                    </a>
+            @endif
+            </div>
+
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
