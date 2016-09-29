@@ -15,25 +15,29 @@ class SocialAuthController extends Controller
 	#Client secret: YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt
 	#redirect : http://localhost:8080/callback
 
-	#Server : clublectordev.us-east-1.elasticbeanstalk.com
-	#Client ID: 8
-	#Client secret: cVBNUwTST4nUDn3m5PRAotFvpdCRryGArfUJRSMH
-	#redirect : https://laravel-oauth-client.herokuapp.com/callback
-
 	public $serverOauth = 'http://clublectordev.us-east-1.elasticbeanstalk.com/';
 	public $clientSecret = 'YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt';
 	public $clientId = '3';
 	public $redirectUri = 'http://localhost:8080/callback';
 
 	public function init(Request $request){
+		if($host == 'laravel-oauth-client.herokuapp.com'):
 
+			#Server : clublectordev.us-east-1.elasticbeanstalk.com
+			#Client ID: 8
+			#Client secret: cVBNUwTST4nUDn3m5PRAotFvpdCRryGArfUJRSMH
+			#redirect : https://laravel-oauth-client.herokuapp.com/callback
+
+			$this->serverOauth = 'http://clublectordev.us-east-1.elasticbeanstalk.com/';
+			$this->clientSecret = 'cVBNUwTST4nUDn3m5PRAotFvpdCRryGArfUJRSMH';
+			$this->clientId = '8';
+			$this->redirectUri = 'https://laravel-oauth-client.herokuapp.com/callback';
+		endif;
 	}
 
 
     public function redirect(Request $request)
     {	
-    	$host = $request->getHost();
-    	dd($host);
     	$this->init($request);
         $query = http_build_query([
 		    'client_id' => $this->clientId,
