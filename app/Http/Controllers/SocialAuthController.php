@@ -21,6 +21,7 @@ class SocialAuthController extends Controller
 	public $redirectUri = 'http://localhost:8080/callback';
 
 	public function init(Request $request){
+		$host = $request->getHost();
 		if($host == 'laravel-oauth-client.herokuapp.com'):
 
 			#Server : clublectordev.us-east-1.elasticbeanstalk.com
