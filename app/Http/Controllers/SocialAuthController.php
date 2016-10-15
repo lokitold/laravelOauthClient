@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Illuminate\Foundation\Inspiring;
+
 class SocialAuthController extends Controller
 {
     //
@@ -129,7 +131,9 @@ class SocialAuthController extends Controller
 
     public function test(Request $request){
 
-    	$data = [];
+    	$data = [
+		'motivational' => Inspiring::quote()
+	];
     	\Mail::send('emails.message', $data, function($message) use ($request)
        {
            //remitente
