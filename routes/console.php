@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,18 @@ Artisan::command('inspire', function () {
 
 
 
-Artisan::command('email', function (Request $request) {
+Artisan::command('email:laravel', function (Request $request) {
+
+  $usuariosRegistrados = User::get(); 
+  //dd($usuariosRegistrados);
+
 	$data = [
-		'motivational' => Inspiring::quote()
+		'motivational' => Inspiring::quote(),
+    'users' => $usuariosRegistrados
 	];
-  \Mail::send('emails.message', $data, function($message) use ($request)
+
+  foreach ($usuariosRegistrados as $key => $miembroDeLaComunidad) {
+    \Mail::send('emails.message', $data, function($message) use ($miembroDeLaComunidad)
       {
            //remitente
            $message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
@@ -34,7 +42,9 @@ Artisan::command('email', function (Request $request) {
            $message->subject('Bienvenido a la comunidad de Laravel Peru');
  
            //receptor
-           $message->to('vico.16c@gmail.com',"victor");
+           $message->to($miembroDeLaComunidad->email,$miembroDeLaComunidad->name);
  
-      });  	
-})->describe('Display an inspiring quote');
+      });   
+  }
+  
+})->describe('enviar Email a la comunidad de laravel Peru');
