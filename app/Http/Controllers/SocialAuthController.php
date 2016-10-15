@@ -126,4 +126,22 @@ class SocialAuthController extends Controller
     	$request->session()->forget('user');
     	return redirect('/');
     }
+
+    public function test(Request $request){
+
+    	$data = [];
+    	\Mail::send('emails.message', $data, function($message) use ($request)
+       {
+           //remitente
+       	   $message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+           
+ 
+           //asunto
+           $message->subject('hola');
+ 
+           //receptor
+           $message->to('vico.16c@gmail.com',"victor");
+ 
+       });
+    }
 }

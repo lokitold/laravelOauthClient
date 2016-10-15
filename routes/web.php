@@ -20,5 +20,15 @@ Route::get('callback', 'SocialAuthController@callback');
 Route::get('get/client', 'SocialAuthController@getClient');
 Route::get('logout-lector', 'SocialAuthController@logout');
 
+Route::get('test', 'SocialAuthController@test');
 
 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
