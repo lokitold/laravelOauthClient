@@ -30,7 +30,7 @@ class SocialAuthController extends Controller
 			#redirect : https://laravel-oauth-client.herokuapp.com/callback
 
 			$this->serverOauth = 'http://laravel-54.herokuapp.com/';
-			$this->clientSecret = 'P5ySmP4uZ7UCKBejLGEQgCZavg1TzFihjr0CyFkx';
+			$this->clientSecret = 'sTIJ8ROEbkQysLjEFmew25qyFUhQ823Hr7d8cVlL';
 			$this->clientId = '32';
 			$this->redirectUri = 'http://laravel-oauth-client.herokuapp.com/callback';
 		endif;
