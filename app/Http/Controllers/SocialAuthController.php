@@ -15,9 +15,9 @@ class SocialAuthController extends Controller
 	#Client secret: YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt
 	#redirect : http://localhost:8080/callback
 
-	public $serverOauth = 'http://clublectordev.us-east-1.elasticbeanstalk.com/';
-	public $clientSecret = 'YbK0IQwM8ueI1L35gr86enZrifyyR0ysmiTXmOPt';
-	public $clientId = '3';
+	public $serverOauth = 'http://laravel-54.herokuapp.com/';
+	public $clientSecret = 'P5ySmP4uZ7UCKBejLGEQgCZavg1TzFihjr0CyFkx';
+	public $clientId = '22';
 	public $redirectUri = 'http://localhost:8080/callback';
 
 	public function init(Request $request){
@@ -29,9 +29,9 @@ class SocialAuthController extends Controller
 			#Client secret: cVBNUwTST4nUDn3m5PRAotFvpdCRryGArfUJRSMH
 			#redirect : https://laravel-oauth-client.herokuapp.com/callback
 
-			$this->serverOauth = 'http://clublectordev.us-east-1.elasticbeanstalk.com/';
-			$this->clientSecret = 'cVBNUwTST4nUDn3m5PRAotFvpdCRryGArfUJRSMH';
-			$this->clientId = '8';
+			$this->serverOauth = 'http://laravel-54.herokuapp.com/';
+			$this->clientSecret = 'P5ySmP4uZ7UCKBejLGEQgCZavg1TzFihjr0CyFkx';
+			$this->clientId = '32';
 			$this->redirectUri = 'https://laravel-oauth-client.herokuapp.com/callback';
 		endif;
 	}

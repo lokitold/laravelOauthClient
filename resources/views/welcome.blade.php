@@ -75,7 +75,7 @@
 
             <div class="top-right links">
             @if (empty(session()->get('user')))
-                <a href="{{ url('/redirect') }}">Registrate con Club Lector</a>
+                <a href="{{ url('/redirect') }}">Registrate con LaravelOauth</a>
             @else
                 <?php $user = session()->get('user'); ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
